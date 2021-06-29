@@ -7,10 +7,34 @@
     <title>CSS Snippet Cheatsheet</title>
   </head>
   <body>
-    <button>Click me!</button>
-    <h3 id="time">Timer:</h3>
-    <div>
 
+    <button id="viewHighscores">View Highscores</button>
+
+    <h3 id="time">Timer:</h3>
+    
+      
+    <div id="main">
+      <h1>
+        Coding Quiz Challenge
+      </h1>
+      <p>
+        Goal: to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalise your score aka time by 10 seconds!
+      </p>
+      <button id="Start Quiz">Start Quiz</button>
+    </div>
+    <div id="highscoreTracker">
+      <section
+      data-hidden="hidden"
+      data-show="show">
+        <h2>
+          Highscores
+        </h2>
+        <ul id="listOfScores">
+
+        </ul>
+        <button id=goBack>Go Back</button>
+        <button id=clearHighscores>Clear Highscores</button>
+      </section>
     </div>
     <script src="./assets/script.js"></script>
   </body>
