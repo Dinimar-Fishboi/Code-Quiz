@@ -5,6 +5,8 @@ var startQuizBtn = document.querySelector("#startQuiz");
 var holdQuestions = document.querySelector("#holdQuestions")
 // var questionTitle = document.querySelector('#questionTitle')
 
+var liElement =0;
+
 var secondsLeft = 60;
 
 
@@ -45,11 +47,11 @@ setTime();
     document.getElementById('questionTitle').innerHTML = Question1.ThisIsTheQuestion;
         
         console.log(Question1.possibleAnswers);
-        var liElement = document.createElement("LI");
+        var liElement = document.createElement('li');
         
         for (i = 0; i < Question1.possibleAnswers.length ; i++) {
             console.log(Question1.possibleAnswers[i])
-            liElement.appendChild(Question1.possibleAnswers);
+            liElement.textContent(Question1.possibleAnswers);
 
         }
 
