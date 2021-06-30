@@ -3,6 +3,7 @@ console.log("yes you hooked up the path")
 var timeCountdown = document.querySelector("#time");
 var startQuizBtn = document.querySelector("#startQuiz");
 var holdQuestions = document.querySelector("#holdQuestions")
+// var questionTitle = document.querySelector('#questionTitle')
 
 var secondsLeft = 60;
 
@@ -29,7 +30,7 @@ function setTime() {
     }, 1000);
   }
 
-  setTime();
+setTime();
 
 
 
@@ -40,6 +41,21 @@ function setTime() {
     // What we want to do here is apply Question1.thisIsTheQuestion to a 
     // h2 element (which still needs to be created in Index.html), and add
     // Question1.possibleAnswers to a ul and li file.
-    document.holdQuestions.appendChild(Question1);
+    //document.holdQuestions.appendChild(Question1);
+    document.getElementById('questionTitle').innerHTML = Question1.ThisIsTheQuestion;
+        
+        console.log(Question1.possibleAnswers);
+        var liElement = document.createElement("LI");
+        
+        for (i = 0; i < Question1.possibleAnswers.length ; i++) {
+            console.log(Question1.possibleAnswers[i])
+            liElement.appendChild(Question1.possibleAnswers);
 
+        }
+
+     //  var answerChoice = document.createTextNode(Question1.possibleAnswers[i]);
+     //  console.log(answerChoice);
+        // document.getElementById('answerList').appendChild(liElement);
+        
   });
+
