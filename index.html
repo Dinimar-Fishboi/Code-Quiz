@@ -10,17 +10,22 @@
 
     <button id="viewHighscores">View Highscores</button>
 
-    <h3 id="time">Timer:</h3>
-    
+    <h3>Timer:<span id="time">0</span></h3>
+
       
-    <div id="main">
+    <div id="main"
+     data-banished="banished"
+     data-display="display">
       <h1>
         Coding Quiz Challenge
       </h1>
       <p>
         Goal: to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalise your score aka time by 10 seconds!
       </p>
-      <button id="Start Quiz">Start Quiz</button>
+      <button id="startQuiz">Start Quiz</button>
+      <div id=holdQuestions>
+
+      </div>
     </div>
     <div id="highscoreTracker">
       <section
