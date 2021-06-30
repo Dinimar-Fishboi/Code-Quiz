@@ -1,21 +1,16 @@
 console.log("yes you hooked up the path")
 
 var timeCountdown = document.querySelector("#time");
-var startQuizBtn = document.querySelector("startQuiz");
-var holdQuestions = document.querySelector("holdQuestions")
+var startQuizBtn = document.querySelector("#startQuiz");
+var holdQuestions = document.querySelector("#holdQuestions")
 
 var secondsLeft = 60;
 
-var Quiz= {
-    Question0:  ["wrong","correct","incorrect","Nope"],
-    
-}
 
 var Question1= { 
-    No: "Wrong",
-    Null: "Wrong",
-    Yes: "Correct",
-    Nope: "Wrong",
+    ThisIsTheQuestion: "What is 2 + 2?",
+    possibleAnswers: ["5","4","8","22"],
+    correctAnswer: "4",
 } 
 
 function setTime() {
@@ -28,7 +23,7 @@ function setTime() {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
         // Calls function to create and append image
-        sendMessage();
+      //  sendMessage();
       }
   
     }, 1000);
@@ -36,11 +31,15 @@ function setTime() {
 
   setTime();
 
-  function launchQuiz (event) {
+
+
+
+   startQuizBtn.addEventListener("click",function launchQuiz (event) {
     event.preventDefault();
 
-    document.holdQuestions.appendChild(Question1)
-  }
+    // What we want to do here is apply Question1.thisIsTheQuestion to a 
+    // h2 element (which still needs to be created in Index.html), and add
+    // Question1.possibleAnswers to a ul and li file.
+    document.holdQuestions.appendChild(Question1);
 
-
-   startQuizBtn.addEventListener("click", launchQuiz (event))
+  });
