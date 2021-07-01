@@ -10,8 +10,8 @@ var liElement =0;
 var secondsLeft = 60;
 
 
-var Question1= { 
-    ThisIsTheQuestion: "What is 2 + 2?",
+var questionOne= { 
+    thisIsTheQuestion: "What is 2 + 2?",
     possibleAnswers: ["5","4","8","22"],
     correctAnswer: "4",
 } 
@@ -40,24 +40,28 @@ setTime();
    startQuizBtn.addEventListener("click",function launchQuiz (event) {
     event.preventDefault();
 
-    // What we want to do here is apply Question1.thisIsTheQuestion to a 
+    // What we want to do here is apply questionOne.thisIsTheQuestion to a 
     // h2 element (which still needs to be created in Index.html), and add
-    // Question1.possibleAnswers to a ul and li file.
-    //document.holdQuestions.appendChild(Question1);
-    document.getElementById('questionTitle').innerHTML = Question1.ThisIsTheQuestion;
+    // questionOne .possibleAnswers to a ul and li file.
+    //document.holdQuestions.appendChild(questionOne );
+    document.getElementById('questionTitle').innerHTML = questionOne.thisIsTheQuestion;
         
-        console.log(Question1.possibleAnswers);
-        var liElement = document.createElement('li');
+        var answerList = document.getElementById("answerList");
         
-        for (i = 0; i < Question1.possibleAnswers.length ; i++) {
-            console.log(Question1.possibleAnswers[i])
-            liElement.textContent(Question1.possibleAnswers);
+        for (i = 0; i < questionOne.possibleAnswers.length ; i++) {
+            
+            var liElement = document.createElement('li');
+
+            console.log(questionOne.possibleAnswers[i]);
+            liElement.textContent = questionOne.possibleAnswers[i]
+            console.log(answerList);
+            answerList.appendChild(liElement);
+            //liElement.textContent(questionOne.possibleAnswers);
 
         }
 
-     //  var answerChoice = document.createTextNode(Question1.possibleAnswers[i]);
-     //  console.log(answerChoice);
-        // document.getElementById('answerList').appendChild(liElement);
-        
+        // When one liElement is clicked, we need an event listener to hear the click
+        // How does the parent react when the li is clicked?
+        // Remember event.target
   });
 
