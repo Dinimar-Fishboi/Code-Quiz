@@ -3,6 +3,7 @@ console.log("yes you hooked up the path")
 var timeCountdown = document.querySelector("#time");
 var startQuizBtn = document.querySelector("#startQuiz");
 var holdQuestions = document.querySelector("#holdQuestions")
+var mainTitle = document.querySelector("#main")
 // var questionTitle = document.querySelector('#questionTitle')
 
 var liElement =0;
@@ -43,8 +44,6 @@ function shuffleArray() {
 
 shuffleArray();
 
-console.log(questionArray[1].thisIsTheQuestion)
-
 
 function setTime() {
     // Sets interval in variable
@@ -55,6 +54,7 @@ function setTime() {
       if(secondsLeft === 0) {
         // Stops execution of action at set interval
         clearInterval(timerInterval);
+        document.getElementById("main").style.display = 'block'
         // Calls function to create and append image
       //  sendMessage();
       }
@@ -70,10 +70,12 @@ setTime();
    startQuizBtn.addEventListener("click",function launchQuiz (event) {
     event.preventDefault();
     shuffleArray();
+    document.getElementById("main").style.display = 'none'
+
 
     //function cardFlip(event) {
     
-    for (i = 0; i < questionArray.length ; i++) {
+  //for (i = 0; i < questionArray.length ; i++) {
 
     // We are going to have a small group of random questions that are going 
     // to be randomly generated each round.
@@ -83,43 +85,41 @@ setTime();
     // h2 element (which still needs to be created in Index.html), and add
     // questionOne .possibleAnswers to a ul and li file.
     //document.holdQuestions.appendChild(questionOne );
-   document.getElementById('questionTitle').innerHTML = questionArray[1].thisIsTheQuestion;
-      console.log(questionArray[1])    
+
+      console.log(questionArray[0])    
 
         var answerList = document.createElement("ul");
         holdQuestions.appendChild(answerList);
         console.log(event.target)
-        for (i = 0; i < 4 ; i++) {
+        for (g = 0; g < 4 ; g++) {
             
+            document.getElementById('questionTitle').innerHTML = questionArray[0].thisIsTheQuestion;
+
             var liElement = document.createElement('li');
 
-            console.log(questionArray[1].possibleAnswers[i]);
-            liElement.textContent = questionArray[1].possibleAnswers[i]
-            liElement.innerHTML = questionArray[1].possibleAnswers[i]
+            liElement.innerHTML = questionArray[0].possibleAnswers[g]
 
-            console.log(answerList);
             answerList.appendChild(liElement);
-            // console.log(event.currentTarget)
-            //liElement.textContent(questionOne.possibleAnswers);
+            
             liElement.addEventListener('click', function(event){
-              var chosenAnswer = event.target.textContent;
-              console.log(chosenAnswer)
-              console.log(questionArray[1].correctAnswer)
               
-              if (event.target.textContent === questionArray[1].correctAnswer){
+              if (event.target.textContent === questionArray[0].correctAnswer) {
                 console.log("That's it!");
 
               } else { console.log("Nope");
-              }
+              secondsLeft = secondsLeft - 15;
+            }
+              document.getElementById("main").style.display = 'block'
 
-              holdQuestions.removeChild(answerList)
+              answerList.remove()
               document.getElementById('questionTitle').innerHTML = "";
-
             })
-        }
-      }
+         }
+
+        
+
         // When one liElement is clicked, we need an event listener to hear the click
         // How does the parent react when the li is clicked?
         // Remember event.target
-  });
-
+  
+      });
