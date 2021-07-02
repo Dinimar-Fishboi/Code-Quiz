@@ -13,7 +13,7 @@ var secondsLeft = 60;
 var questionOne= { 
     thisIsTheQuestion: "What is 2 + 2?",
     possibleAnswers: ["5","4","8","22"],
-    correctAnswer: "4",
+    correctAnswer: "4", 
 } 
 
 function setTime() {
@@ -47,19 +47,32 @@ setTime();
     document.getElementById('questionTitle').innerHTML = questionOne.thisIsTheQuestion;
         
         var answerList = document.getElementById("answerList");
-        
+        console.log(event.target)
         for (i = 0; i < questionOne.possibleAnswers.length ; i++) {
             
             var liElement = document.createElement('li');
 
             console.log(questionOne.possibleAnswers[i]);
             liElement.textContent = questionOne.possibleAnswers[i]
+            liElement.innerHTML = questionOne.possibleAnswers[i]
+
             console.log(answerList);
             answerList.appendChild(liElement);
+            // console.log(event.currentTarget)
             //liElement.textContent(questionOne.possibleAnswers);
+            liElement.addEventListener('click', function(event){
+              var chosenAnswer = event.target.textContent;
+              console.log(chosenAnswer)
+              console.log(questionOne.correctAnswer)
+              
+              if (event.target.textContent === questionOne.correctAnswer){
+                console.log("That's it!");
+              } else { console.log("Nope");
+              }
 
+            })
         }
-
+         
         // When one liElement is clicked, we need an event listener to hear the click
         // How does the parent react when the li is clicked?
         // Remember event.target
