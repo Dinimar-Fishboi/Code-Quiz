@@ -109,10 +109,43 @@ setTime();
               } else { console.log("Nope");
               secondsLeft = secondsLeft - 15;
             }
-              document.getElementById("main").style.display = 'block'
+          //    document.getElementById("main").style.display = 'block'
 
               answerList.remove()
               document.getElementById('questionTitle').innerHTML = "";
+            })
+
+          // Second cycle
+
+            liElement.addEventListener('click', function(event){
+              var answerList = document.createElement("ul");
+              holdQuestions.appendChild(answerList);
+              console.log(event.target)
+              for (g = 0; g < 4 ; g++) {
+                  
+                  document.getElementById('questionTitle').innerHTML = questionArray[1].thisIsTheQuestion;
+      
+                  var liElement = document.createElement('li');
+      
+                  liElement.innerHTML = questionArray[1].possibleAnswers[g]
+      
+                  answerList.appendChild(liElement);
+
+                  liElement.addEventListener('click', function(event){
+              
+                    if (event.target.textContent === questionArray[1].correctAnswer) {
+                      console.log("That's it!");
+      
+                    } else { console.log("Nope");
+                    secondsLeft = secondsLeft - 15;
+                  }
+                    document.getElementById("main").style.display = 'block'
+      
+                    answerList.remove()
+                    document.getElementById('questionTitle').innerHTML = "";
+                  })
+              }
+
             })
          }
 
