@@ -1,12 +1,13 @@
-console.log("yes you hooked up the path")
 
 var timeCountdown = document.querySelector("#time");
 var startQuizBtn = document.querySelector("#startQuiz");
-var holdQuestions = document.querySelector("#holdQuestions")
-var mainTitle = document.querySelector("#main")
+var holdQuestions = document.querySelector("#holdQuestions");
+var mainTitle = document.querySelector("#main");
+var submitInitialsBtn = document.querySelector("#submitInitials");
+var enteredInitials = document.querySelector("#enteredInitials");
+var listOfScores = document.querySelector("#listOfScores");
 var quizIndex = 0
 var liElement =0;
-
 var secondsLeft = 0;
 
 
@@ -61,6 +62,9 @@ shuffleArray();
 
     var answerList = document.getElementById("exampleList")
 
+    document.getElementById('answerStatus').innerHTML = "";
+
+
     console.log(event.target)
     for (g = 0; g < 4 ; g++) {
         
@@ -79,9 +83,14 @@ shuffleArray();
           
           if (event.target.textContent === questionArray[i].correctAnswer) {
             console.log("That's it!");
+            document.getElementById('answerStatus').innerHTML = "Correct!";
 
-          } else { console.log("Nope");
+
+          } else { 
+          console.log("Nope");
           secondsLeft = secondsLeft - 15;
+          document.getElementById('answerStatus').innerHTML = "Wrong!";
+
         }
           quizIndex = quizIndex + 1;
           console.log(quizIndex)
@@ -142,3 +151,14 @@ shuffleArray();
       
         }, 1000);
       }
+
+      submitInitialsBtn.addEventListener("click", function recordScore (event) {
+        event.preventDefault();
+        
+        //This is where we are going to store the scores. 
+        enteredInitials.innerHTML = "";
+        listOfScores.textContent = enteredInitials.length;
+
+
+
+      });
