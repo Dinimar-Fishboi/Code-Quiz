@@ -77,42 +77,77 @@ setTime();
 
 
  function quizBegins(){
+
+  var quizIndex = 0
+  var i = quizIndex
     
-  //for (i = 0; i < questionArray.length ; i++) {
+    // document.getElementById('questionTitle').innerHTML = questionArray[0].thisIsTheQuestion;
 
-    document.getElementById('questionTitle').innerHTML = questionArray[0].thisIsTheQuestion;
+    // var answerList = document.getElementById("exampleList")
+    //   console.log(questionArray[0])    
 
-    var answerList = document.getElementById("exampleList")
-      console.log(questionArray[0])    
-
-        for (g = 0; g < 4 ; g++) {
+    //     for (g = 0; g < 4 ; g++) {
             
-            //document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
+    //         document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
 
-            var liElement = document.createElement('li');
+    //         var liElement = document.createElement('li');
             
 
-            liElement.innerHTML = questionArray[0].possibleAnswers[g]
+    //         liElement.innerHTML = questionArray[0].possibleAnswers[g]
 
-            answerList.appendChild(liElement);
-        }
+    //         answerList.appendChild(liElement);
+    //     }
 
-            liElement.addEventListener('click', function(event){
-              console.log(event.target.textContent)
-              console.log(questionArray[0].correctAnswer)
+    //         liElement.addEventListener('click', function(event){
+    //           console.log(event.target.textContent)
+    //           console.log(questionArray[0].correctAnswer)
               
-              if (event.target.textContent === questionArray[0].correctAnswer) {
-                console.log("That's it!");
+    //           if (event.target.textContent === questionArray[0].correctAnswer) {
+    //             console.log("That's it!");
 
-              } else { console.log("Nope");
-              secondsLeft = secondsLeft - 15;
-            }
+    //           } else { console.log("Nope");
+    //           secondsLeft = secondsLeft - 15;
+    //         }
 
+    //           document.getElementById("main").style.display = 'block'
 
-              document.getElementById('exampleList').innerHTML = "";
+    //           document.getElementById('exampleList').innerHTML = "";
 
-              document.getElementById('questionTitle').innerHTML = "";
-            })
+    //           document.getElementById('questionTitle').innerHTML = "";
+    //         })
+
+            // Fourth and final cycle
+
+                          console.log(questionArray[i])    
+
+                            // var answerList = document.createElement("ul");
+                            // holdQuestions.appendChild(answerList);
+                            var answerList = document.getElementById("exampleList")
+
+                            console.log(event.target)
+                            for (g = 0; g < 4 ; g++) {
+                                
+                                document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
+
+                                var liElement = document.createElement('li');
+
+                                liElement.innerHTML = questionArray[i].possibleAnswers[g]
+
+                                answerList.appendChild(liElement);
+                                
+                                liElement.addEventListener('click', function(event){
+                                  
+                                  if (event.target.textContent === questionArray[i].correctAnswer) {
+                                    console.log("That's it!");
+
+                                  } else { console.log("Nope");
+                                  secondsLeft = secondsLeft - 15;
+                                }
+                                  document.getElementById("main").style.display = 'block'
+                                  // Will also need to tally final score as seconds left
+                                  document.getElementById('exampleList').innerHTML = "";
+                                  document.getElementById('questionTitle').innerHTML = "";
+                                })
           
             
           // Second cycle
@@ -255,7 +290,7 @@ setTime();
         // How does the parent react when the li is clicked?
         // Remember event.target
   
-      
+ }
 
       startQuizBtn.addEventListener("click",function launchQuiz (event) {
         event.preventDefault();
