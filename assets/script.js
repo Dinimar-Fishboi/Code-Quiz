@@ -77,28 +77,31 @@ setTime();
 
 
  function quizBegins(){
-
-    //function cardFlip(event) {
     
-  for (i = 0; i < questionArray.length ; i++) {
+  //for (i = 0; i < questionArray.length ; i++) {
 
-      console.log(questionArray[i])    
+    document.getElementById('questionTitle').innerHTML = questionArray[0].thisIsTheQuestion;
+
+    var answerList = document.getElementById("exampleList")
+      console.log(questionArray[0])    
 
         for (g = 0; g < 4 ; g++) {
             
-            document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
+            //document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
 
             var liElement = document.createElement('li');
-            var answerList = document.getElementById("exampleList")
+            
 
-            liElement.innerHTML = questionArray[i].possibleAnswers[g]
+            liElement.innerHTML = questionArray[0].possibleAnswers[g]
 
             answerList.appendChild(liElement);
         }
 
             liElement.addEventListener('click', function(event){
+              console.log(event.target.textContent)
+              console.log(questionArray[0].correctAnswer)
               
-              if (event.target.textContent === questionArray[i].correctAnswer) {
+              if (event.target.textContent === questionArray[0].correctAnswer) {
                 console.log("That's it!");
 
               } else { console.log("Nope");
@@ -111,8 +114,42 @@ setTime();
               document.getElementById('questionTitle').innerHTML = "";
             })
           
-
+            
           // Second cycle
+
+    //       document.getElementById('questionTitle').innerHTML = questionArray[1].thisIsTheQuestion;
+
+    // var answerList = document.getElementById("exampleList")
+    //   console.log(questionArray[1])    
+
+    //     for (g = 0; g < 4 ; g++) {
+            
+    //         //document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
+
+    //         var liElement = document.createElement('li');
+            
+
+    //         liElement.innerHTML = questionArray[1].possibleAnswers[g]
+
+    //         answerList.appendChild(liElement);
+    //     }
+
+    //         liElement.addEventListener('click', function(event){
+    //           console.log(event.target.textContent)
+    //           console.log(questionArray[1].correctAnswer)
+              
+    //           if (event.target.textContent === questionArray[1].correctAnswer) {
+    //             console.log("That's it!");
+
+    //           } else { console.log("Nope");
+    //           secondsLeft = secondsLeft - 15;
+    //         }
+
+
+    //           document.getElementById('exampleList').innerHTML = "";
+
+    //           document.getElementById('questionTitle').innerHTML = "";
+    //         })
 
             // liElement.addEventListener('click', function(event){
             //   var answerList = document.createElement("ul");
@@ -210,7 +247,7 @@ setTime();
             //     }
 
             // })
-          }
+          
 
         }
 
