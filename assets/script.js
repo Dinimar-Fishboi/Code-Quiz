@@ -7,7 +7,7 @@ var mainTitle = document.querySelector("#main")
 var quizIndex = 0
 var liElement =0;
 
-var secondsLeft = 60;
+var secondsLeft = 0;
 
 
 var questionOne= { 
@@ -48,91 +48,97 @@ function shuffleArray() {
 shuffleArray();
 
 
-function setTime() {
-    // Sets interval in variable
-    var timerInterval = setInterval(function() {
-      secondsLeft--;
-      timeCountdown.textContent = secondsLeft;
-  
-      if(secondsLeft === 0) {
-        // Stops execution of action at set interval
-        clearInterval(timerInterval);
-        document.getElementById("main").style.display = 'block'
-        
-        document.getElementById('exampleList').innerHTML = "";
 
-        document.getElementById('questionTitle').innerHTML = "";
-        // Calls function to create and append image
-      //  sendMessage();
-      }
-  
-    }, 1000);
-  }
 
-setTime();
+
 
 
 
 
  function quizBegins(){
 
-  var i = quizIndex
+    var i = quizIndex
 
-                         var answerList = document.getElementById("exampleList")
+    var answerList = document.getElementById("exampleList")
 
-                            console.log(event.target)
-                            for (g = 0; g < 4 ; g++) {
-                                
-                                document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
+    console.log(event.target)
+    for (g = 0; g < 4 ; g++) {
+        
+        document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
 
-                                var liElement = document.createElement('li');
+        var liElement = document.createElement('li');
 
-                                liElement.innerHTML = questionArray[i].possibleAnswers[g]
+        liElement.innerHTML = questionArray[i].possibleAnswers[g]
 
-                                answerList.appendChild(liElement);
-                                
-                                liElement.addEventListener('click', function(event){
+        answerList.appendChild(liElement);
+        
+        liElement.addEventListener('click', function(event){
 
-                                  // Below conditional statement necessary for assigning the penalty
-                                  // of having selected the wrong answer
-                                  
-                                  if (event.target.textContent === questionArray[i].correctAnswer) {
-                                    console.log("That's it!");
-
-                                  } else { console.log("Nope");
-                                  secondsLeft = secondsLeft - 15;
-                                }
-                                  quizIndex = quizIndex + 1;
-                                  console.log(quizIndex)
-                                  
-                                  document.getElementById('exampleList').innerHTML = "";
-                                  document.getElementById('questionTitle').innerHTML = "";
-                                  
-                                  // This conditional statement will reset the page and provide the
-                                  // localStorage information.
-                                  if (quizIndex === 4) {
-                                    document.getElementById("main").style.display = 'block';
-                                    
-                                    quizIndex = 0;
-                                    return;
-                                  } else {
-                                  quizBegins();
-                                  }
-                                })
+          // Below conditional statement necessary for assigning the penalty
+          // of having selected the wrong answer
           
-       
+          if (event.target.textContent === questionArray[i].correctAnswer) {
+            console.log("That's it!");
 
+          } else { console.log("Nope");
+          secondsLeft = secondsLeft - 15;
         }
- }
+          quizIndex = quizIndex + 1;
+          console.log(quizIndex)
+          
+          document.getElementById('exampleList').innerHTML = "";
+          document.getElementById('questionTitle').innerHTML = "";
+          
+          // This conditional statement will reset the page and provide the
+          // localStorage information.
+
+          if (quizIndex === 4) {
+            document.getElementById("main").style.display = 'block';
+            console.log(secondsLeft)
+            localStorage.setItem("finalScore", secondsLeft )
+            document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+            quizIndex = 0;
+            secondsLeft = 1;
+            return;
+          } else {
+          quizBegins();
+          }
+        })
+       }
+   }  
 
       startQuizBtn.addEventListener("click",function launchQuiz (event) {
         event.preventDefault();
         shuffleArray();
         document.getElementById("main").style.display = 'none'
+        secondsLeft = 60;
+        setTime();
         quizBegins();
-
         // This is where we place the secondsLeft = highscore variable. 
         // Also probably the localstorage?
         //document.getElementById("main").style.display = 'block'
 
        });
+
+       function setTime() {
+        // Sets interval in variable
+        var timerInterval = setInterval(function() {
+          secondsLeft--;
+          timeCountdown.textContent = secondsLeft;
+      
+          if(secondsLeft === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            document.getElementById("main").style.display = 'block'
+            
+            document.getElementById('exampleList').innerHTML = "";
+    
+            document.getElementById('questionTitle').innerHTML = "";
+            
+            return;
+            // Calls function to create and append image
+          //  sendMessage();
+          }
+      
+        }, 1000);
+      }
