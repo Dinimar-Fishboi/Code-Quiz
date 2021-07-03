@@ -12,7 +12,6 @@
 
     <h3>Timer:<span id="time">0</span></h3>
 
-      
     <div id="main"
      data-banished="banished"
      data-display="display">
@@ -25,14 +24,28 @@
     
       <button id="startQuiz">Start Quiz</button>
     </div>
+
     <div id=holdQuestions>
       <h4 id='questionTitle'>
 
       </h4>
-      <h5 id="example"></h5>
-        <ul id="exampleList">
-          
-        </ul>
+      <ul id="exampleList">
+
+      </ul>
+      <h5 id="answerStatus">
+
+      </h5>
+    </div>
+
+    <div id="recordScore">
+      <h4>All Done!</h4>
+      <p>Your final score is <span id=finalScore></span>.</p>
+      <form>
+        <label>Enter Initials</label>
+        <input type="text" name="enteredInitials" id="enteredInitials">
+        <button id="submitInitials">Submit</button>
+      </form>
+
     </div>
     
     <div id="highscoreTracker">
