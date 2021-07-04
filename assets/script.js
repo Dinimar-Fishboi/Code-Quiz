@@ -15,27 +15,27 @@ var secondsLeft = 0;
 
 
 var questionOne= { 
-    thisIsTheQuestion: "Question 1",
-    possibleAnswers: ["wrong","4","wrong","wrong"],
-    correctAnswer: "4", 
+    thisIsTheQuestion: "Explain Implicit Type Coercion in javascript",
+    possibleAnswers: ["Converting all data types to 0 or 0n","Automatic conversion of value from one data type to another","The successful outcome of OR (||) operator","The comparison between variables using =="],
+    correctAnswer: "Automatic conversion of value from one data type to another", 
 } 
 
 var questionTwo = {
-  thisIsTheQuestion: "Question 2",
-  possibleAnswers: ["wrong","wrong","8","wrong"],
-  correctAnswer: "8", 
+  thisIsTheQuestion: "Which of these Values is NOT primitive?",
+  possibleAnswers: ["Z","'Hello!'","8","false"],
+  correctAnswer: "Z", 
 }
 
 var questionThree = {
-  thisIsTheQuestion: "Question 3?",
-  possibleAnswers: ["wrong","16","wrong","wrong"],
-  correctAnswer: "16", 
+  thisIsTheQuestion: "What is a Higher Order Function?",
+  possibleAnswers: ["Implicit (or given) functions in the DOM","A function associated with a Third Party DOM","Functions that operate on other functions","Global functions that operate as soon as they are defined"],
+  correctAnswer: "Functions that operate on other functions", 
 }
 
 var questionFour = {
-  thisIsTheQuestion: "Question 4?",
-  possibleAnswers: ["wrong","wrong","wrong","44"],
-  correctAnswer: "44", 
+  thisIsTheQuestion: "Which of these is NOT a form of Scope in JS?",
+  possibleAnswers: ["Global Scope","Local or Function Scope","Block Scope","String Scope"],
+  correctAnswer: "String Scope", 
 }
 
 questionArray = [questionOne, questionTwo, questionThree, questionFour]
