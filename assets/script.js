@@ -155,13 +155,15 @@ shuffleArray();
       submitInitialsBtn.addEventListener("click", function recordScore (event) {
         event.preventDefault();
         console.log("Initials Submitted")
-
+        
         //This is where we are going to store the scores. 
 //          enteredInitials.innerHTML = "";
         var initialsProvided = document.querySelector("#enteredInitials").value;
         localStorage.setItem("enteredInitials", initialsProvided);
-
-        enteredInitials.innerHTML = ""
+        console.log(initialsProvided);
+          // enteredInitials.innerHTML = ""
+        document.querySelector("#enteredInitials").textContent = ""
+        document.getElementById("scoreForm").reset();
         document.getElementById("highscoreTracker").style.display = 'block'
 
         
