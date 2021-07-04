@@ -154,11 +154,25 @@ shuffleArray();
 
       submitInitialsBtn.addEventListener("click", function recordScore (event) {
         event.preventDefault();
-        
-        //This is where we are going to store the scores. 
-        enteredInitials.innerHTML = "";
-        listOfScores.textContent = enteredInitials.length;
+        console.log("Initials Submitted")
 
+        //This is where we are going to store the scores. 
+//          enteredInitials.innerHTML = "";
+        var initialsProvided = document.querySelector("#enteredInitials").value;
+        localStorage.setItem("enteredInitials", initialsProvided);
+
+        enteredInitials.innerHTML = ""
+        document.getElementById("highscoreTracker").style.display = 'block'
+
+        
+        // listOfScores.textContent = enteredInitials.length;
+
+        // for( q =0; q < enteredInitials.length; q++) {
+        //   var userScore = userScore[q];
+        //   var userScoreLi = document.createElement('li');
+        //   userScoreLi.textContent = userScore;
+        //   enteredInitials.appendChild(userScoreLi);
+        // }
 
 
       });

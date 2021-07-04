@@ -40,10 +40,10 @@
     <div id="recordScore">
       <h4>All Done!</h4>
       <p>Your final score is <span id=finalScore></span>.</p>
-      <form>
-        <label>Enter Initials</label>
-        <input id="enteredInitials" type="text" name="text">
-        <input id="submitInitials" type="submit" value="Submit">
+      <form method="POST">
+        <label for="enteredInitials">Enter Initials</label>
+        <input id="enteredInitials" type="text" name="text" placeholder="SMH,LOL,ect">
+        <button id="submitInitials">Submit</button> 
       </form>
 
     </div>
