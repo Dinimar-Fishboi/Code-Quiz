@@ -141,22 +141,32 @@ for (g = 0; g < 4 ; g++) {
     liElement.addEventListener('click', function(event){
 
       // Below conditional statement necessary for assigning the penalty
-      // of having selected the wrong answer
-      
-      if (event.target.textContent === questionArray[i].correctAnswer) {
-        console.log("That's it!");
-        document.getElementById('answerStatus').innerHTML = "Correct!";
+      // of having selected the wrong answer, as well as the alert.
 
+        // var alertTime =1;
 
-      } else { 
-      console.log("Nope");
-      secondsLeft = secondsLeft - 15;
-      document.getElementById('answerStatus').innerHTML = "Wrong!";
+        // alertShow = setInterval(function(){
 
-    }
+        //   if (alertTime > 0) {
 
-    // Here is the code to show either the "Wrong" or "Correct" alert.
+            if (event.target.textContent === questionArray[i].correctAnswer) {
+              console.log("That's it!");
+              document.getElementById('answerStatus').innerHTML = "Correct!";
+              // alertTime--;
 
+            } else { 
+            console.log("Nope");
+            secondsLeft = secondsLeft - 15;
+            document.getElementById('answerStatus').innerHTML = "Wrong!";
+              // alertTime--
+            }
+          // }
+
+    //       if (alertTime === 0) {
+    //         document.getElementById('answerStatus').innerHTML = "";
+    //         clearInterval(alertShow);
+    //       }
+    // }, 1000);
 
 
     // These lines reset the HTML block that holdsQuestions before the 
