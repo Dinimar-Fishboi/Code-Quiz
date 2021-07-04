@@ -3,8 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="assets/reset.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/style.css">
-    <title>CSS Snippet Cheatsheet</title>
+
+    <title>Coding Quiz Challenge</title>
   </head>
   <body>
     <header>
@@ -14,9 +18,9 @@
     </header>
 
     <div id="main">
-      <h1>
+      <h2>
         Coding Quiz Challenge
-      </h1>
+      </h2>
       <p>
         Goal: to answer the following code related questions within the time limit. Keep in mind that incorrect answers will penalise your score aka time by 15 seconds!
       </p>
@@ -28,16 +32,16 @@
       <h3 id='questionTitle'>
 
       </h3>
-      <ul id="exampleList">
+      <ol id="exampleList">
 
-      </ul>
+      </ol>
       <h5 id="answerStatus">
 
       </h5>
     </div>
 
     <div id="recordScore">
-      <h4>All Done!</h4>
+      <h3>All Done!</h3>
       <p>Your final score is <span id=finalScore>0</span>.</p>
       <form method="POST" id="scoreForm">
         <label for="enteredInitials">Enter Initials</label>
@@ -53,8 +57,8 @@
         <h2>
             Highscores
         </h2>
-        <ul id="listOfScores">
-        </ul>
+        <ol id="listOfScores">
+        </ol>
         <button id=goBack>Go Back</button>
         <button id=clearHighscores>Clear Highscores</button>
       </section>

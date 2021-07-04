@@ -191,7 +191,7 @@ submitInitialsBtn.addEventListener("click", function recordScore (event) {
   var scoreLi = document.createElement('li');
   var userInitials = JSON.parse(localStorage.getItem("enteredInitials"));
   var timeLeft = localStorage.getItem("finalScore");
-  scoreLi.innerHTML = userInitials +"       "+ timeLeft;
+  scoreLi.innerHTML = userInitials +":             "+ timeLeft;
   listOfScores.appendChild(scoreLi);
 
 
