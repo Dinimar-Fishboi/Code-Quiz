@@ -51,81 +51,7 @@ function shuffleArray() {
 shuffleArray();
 
 
- function quizBegins(){
 
-    var i = quizIndex
-
-    var answerList = document.getElementById("exampleList")
-
-    document.getElementById('answerStatus').innerHTML = "";
-
-
-    console.log(event.target)
-    for (g = 0; g < 4 ; g++) {
-        
-        document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
-
-        var liElement = document.createElement('li');
-
-        liElement.innerHTML = questionArray[i].possibleAnswers[g]
-
-        answerList.appendChild(liElement);
-        
-        liElement.addEventListener('click', function(event){
-
-          // Below conditional statement necessary for assigning the penalty
-          // of having selected the wrong answer
-          
-          if (event.target.textContent === questionArray[i].correctAnswer) {
-            console.log("That's it!");
-            document.getElementById('answerStatus').innerHTML = "Correct!";
-
-
-          } else { 
-          console.log("Nope");
-          secondsLeft = secondsLeft - 15;
-          document.getElementById('answerStatus').innerHTML = "Wrong!";
-
-        }
-
-          quizIndex = quizIndex + 1;
-          console.log(quizIndex)
-          
-          document.getElementById('exampleList').innerHTML = "";
-          document.getElementById('questionTitle').innerHTML = "";
-          
-          // This conditional statement will reset the page and provide the
-          // localStorage information.
-          if (secondsLeft == 0) {
-            console.log("Ran out of time")
-            // document.getElementById('answerStatus').innerHTML = "";
-            // document.getElementById("holdQuestions").style.display = 'none';
-            document.getElementById("recordScore").style.display = 'block';
-            // console.log(secondsLeft)
-            // localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
-            // document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
-            // quizIndex = 0;
-            // secondsLeft = 1;
-            return;
-          }
-
-          if (quizIndex === 4) {
-
-            document.getElementById('answerStatus').innerHTML = "";
-            document.getElementById("holdQuestions").style.display = 'none';
-            document.getElementById("recordScore").style.display = 'block';
-            console.log(secondsLeft)
-            localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
-            document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
-            quizIndex = 0;
-            secondsLeft = 1;
-            return;
-          } else {
-          quizBegins();
-          }
-        })
-       }
-   }  
 
       startQuizBtn.addEventListener("click",function launchQuiz (event) {
         event.preventDefault();
@@ -147,24 +73,119 @@ shuffleArray();
           secondsLeft--;
           timeCountdown.textContent = secondsLeft;
       
-          if(secondsLeft === 0) {
+          if (secondsLeft <= 0 && quizIndex !== 4) {
             // Stops execution of action at set interval
-            clearInterval(timerInterval);
-            document.getElementById("holdQuestions").style.display = 'non'
-            // document.getElementById("recordScore").style.display = 'block'
+             clearInterval(timerInterval);
+             console.log("Ran out of time")
+            document.getElementById("holdQuestions").style.display = 'none'
+            document.getElementById("recordScore").style.display = 'block'
 
-            
+            quizIndex = 0;
+
+            localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
+            document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+
             document.getElementById('exampleList').innerHTML = "";
     
             document.getElementById('questionTitle').innerHTML = "";
             
+           return;
+         
+          } 
+
+          if (quizIndex === 4){
+            clearInterval(timerInterval);
+            quizIndex = 0;
             return;
-            // Calls function to create and append image
-          //  sendMessage();
           }
+          // else {
+          //   clearInterval(timerInterval);
+          //   return;
+          // }
       
         }, 1000);
       }
+
+      function quizBegins(){
+
+        var i = quizIndex
+    
+        var answerList = document.getElementById("exampleList")
+    
+        document.getElementById('answerStatus').innerHTML = "";
+    
+    
+        console.log(event.target)
+        for (g = 0; g < 4 ; g++) {
+            
+            document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
+    
+            var liElement = document.createElement('li');
+    
+            liElement.innerHTML = questionArray[i].possibleAnswers[g]
+    
+            answerList.appendChild(liElement);
+            
+            liElement.addEventListener('click', function(event){
+    
+              // Below conditional statement necessary for assigning the penalty
+              // of having selected the wrong answer
+              
+              if (event.target.textContent === questionArray[i].correctAnswer) {
+                console.log("That's it!");
+                document.getElementById('answerStatus').innerHTML = "Correct!";
+    
+    
+              } else { 
+              console.log("Nope");
+              secondsLeft = secondsLeft - 15;
+              document.getElementById('answerStatus').innerHTML = "Wrong!";
+    
+            }
+    
+              quizIndex = quizIndex + 1;
+              console.log(quizIndex)
+              
+              document.getElementById('exampleList').innerHTML = "";
+              document.getElementById('questionTitle').innerHTML = "";
+              
+              // This conditional statement will reset the page and provide the
+              // localStorage information.
+    
+              // if (secondsLeft == 0) {
+              //   console.log("Ran out of time")
+                // document.getElementById('answerStatus').innerHTML = "";
+                // document.getElementById("holdQuestions").style.display = 'none';
+               // document.getElementById("recordScore").style.display = 'block';
+                // console.log(secondsLeft)
+                // localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
+                // document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+                // quizIndex = 0;
+                // secondsLeft = 1;
+              //   return;
+              // }
+              // if (secondsLeft === 0){
+              //   quizIndex == 4;
+              // }
+    
+              if (quizIndex === 4) {
+                
+                document.getElementById('answerStatus').innerHTML = "";
+                document.getElementById("holdQuestions").style.display = 'none';
+                document.getElementById("recordScore").style.display = 'block';
+                console.log(secondsLeft)
+                localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
+                document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+               // quizIndex = 0;
+                //secondsLeft = 1;
+
+                return;
+              } else {
+              quizBegins();
+              }
+            })
+           }
+       }  
 
       submitInitialsBtn.addEventListener("click", function recordScore (event) {
         event.preventDefault();
