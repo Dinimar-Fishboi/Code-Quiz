@@ -170,7 +170,6 @@ for (g = 0; g < 4 ; g++) {
 
       if (secondsLeft <= 0) {
         secondsLeft = 0;
-       // return;
       }
 
       // And here is the consequence of quizIndex. Basically if all 4
@@ -182,6 +181,7 @@ for (g = 0; g < 4 ; g++) {
         // added then we just need to change the next line and add to 
         // the question array (and I guess change the amount of time
         // you start with), which makes this code easy to update.
+
       if (quizIndex === 4) {
         
         document.getElementById('answerStatus').innerHTML = "";
@@ -217,11 +217,11 @@ submitInitialsBtn.addEventListener("click", function recordScore (event) {
   }
 
   // Then below is where we reset the Form and show the 
-  // highscoreTracker block
+  // highscoreTracker block. This will cover the Main block, but we
+  // can access that later.
 
   document.getElementById("scoreForm").reset();
   document.getElementById("highscoreTracker").style.display = 'block'
-  
   document.getElementById("main").style.display = 'block';
 
   // Then, we need to create an li with the respective score and initals. This ends the
@@ -234,13 +234,11 @@ submitInitialsBtn.addEventListener("click", function recordScore (event) {
   listOfScores.appendChild(scoreLi);
 });
 
-// Return to the main block.
+// Return to the main block, or wherever you were pre selecting the
+// View Highscores button.
 
 goBackBtn.addEventListener("click", function goBack (event){
   event.preventDefault();
-  // document.getElementById("viewHighscores").style.display = 'block';
-  // document.getElementById("hideHighscores").style.display = 'none';
-  // document.getElementById("main").style.display = 'block';
   document.getElementById("highscoreTracker").style.display = 'none';
 })
 
@@ -251,12 +249,11 @@ clearHighscoresBtn.addEventListener("click", function clearHighscores(event){
   document.getElementById('listOfScores').innerHTML = "";
 })
 
-// Viewing the highscores. This button is only usable when viewing the main block.
+// Viewing the highscores. This button is will overwrite everything on the page,
+// as the associated block has been style with position:absolute.
+// It also does NOT pause the timer, however it's very easy to go back.
 
 viewHighscoresBtn.addEventListener("click", function viewHighscores(event){
   event.preventDefault();
-  // document.getElementById("hideHighscores").style.display = 'block';
-  // document.getElementById("viewHighscores").style.display = 'none';
-  // document.getElementById("main").style.display = 'none';
   document.getElementById("highscoreTracker").style.display = 'block';
 })
