@@ -113,6 +113,11 @@ li  {
     padding: 5%;
     padding-bottom: 100%;
     margin: 0%;
+    flex-wrap: wrap;
+}
+
+#highscoreTracker h2 {
+    padding: 1%;
 }
 
 #highscoreTracker li {
