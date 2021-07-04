@@ -102,9 +102,11 @@ shuffleArray();
           // localStorage information.
 
           if (quizIndex === 4) {
+
+            document.getElementById('answerStatus').innerHTML = "!";
             document.getElementById("main").style.display = 'block';
             console.log(secondsLeft)
-            localStorage.setItem("finalScore", secondsLeft )
+            localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
             document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
             quizIndex = 0;
             secondsLeft = 1;
@@ -159,14 +161,21 @@ shuffleArray();
         //This is where we are going to store the scores. 
 //          enteredInitials.innerHTML = "";
         var initialsProvided = document.querySelector("#enteredInitials").value;
-        localStorage.setItem("enteredInitials", initialsProvided);
+        localStorage.setItem("enteredInitials", JSON.stringify(initialsProvided));
         console.log(initialsProvided);
-          // enteredInitials.innerHTML = ""
-        document.querySelector("#enteredInitials").textContent = ""
+
+        // Then below is where we reset the Form and show the block
+        // highscoreTracker.
         document.getElementById("scoreForm").reset();
         document.getElementById("highscoreTracker").style.display = 'block'
 
-        
+        // Then, we need to create an li with the respective score and initals.
+        var scoreLi = document.createElement('li');
+        var userInitials = JSON.parse(localStorage.getItem("enteredInitials"));
+        var timeLeft = localStorage.getItem("finalScore");
+        scoreLi.innerHTML = userInitials +"       "+ timeLeft;
+        listOfScores.appendChild(scoreLi);
+
         // listOfScores.textContent = enteredInitials.length;
 
         // for( q =0; q < enteredInitials.length; q++) {
