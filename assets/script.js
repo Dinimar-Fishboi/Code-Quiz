@@ -96,8 +96,20 @@ shuffleArray();
           
           // This conditional statement will reset the page and provide the
           // localStorage information.
+          if (secondsLeft == 0) {
+            console.log("Ran out of time")
+            // document.getElementById('answerStatus').innerHTML = "";
+            // document.getElementById("holdQuestions").style.display = 'none';
+            document.getElementById("recordScore").style.display = 'block';
+            // console.log(secondsLeft)
+            // localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
+            // document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+            // quizIndex = 0;
+            // secondsLeft = 1;
+            return;
+          }
 
-          if ((quizIndex === 4) || (secondsLeft === 0)) {
+          if (quizIndex === 4) {
 
             document.getElementById('answerStatus').innerHTML = "";
             document.getElementById("holdQuestions").style.display = 'none';
