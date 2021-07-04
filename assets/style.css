@@ -7,3 +7,19 @@ body {
 ul {
     list-style: none;
 }
+
+#main {
+    display: block
+}
+
+#holdQuestions{
+    display: none;
+}
+
+#recordScore{
+    display: none;
+}
+
+#highscoreTracker {
+    display: none;
+}

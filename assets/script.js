@@ -1,4 +1,4 @@
-
+var viewHighscoresBtn = document.querySelector("#viewHighscores");
 var timeCountdown = document.querySelector("#time");
 var startQuizBtn = document.querySelector("#startQuiz");
 var holdQuestions = document.querySelector("#holdQuestions");
@@ -6,6 +6,8 @@ var mainTitle = document.querySelector("#main");
 var submitInitialsBtn = document.querySelector("#submitInitials");
 var enteredInitials = document.querySelector("#enteredInitials");
 var listOfScores = document.querySelector("#listOfScores");
+var goBackBtn = document.getElementById("goBack");
+var clearHighscoresBtn = document.getElementById("clearHighscores");
 var quizIndex = 0
 var liElement =0;
 var secondsLeft = 0;
@@ -49,13 +51,6 @@ function shuffleArray() {
 shuffleArray();
 
 
-
-
-
-
-
-
-
  function quizBegins(){
 
     var i = quizIndex
@@ -92,6 +87,7 @@ shuffleArray();
           document.getElementById('answerStatus').innerHTML = "Wrong!";
 
         }
+
           quizIndex = quizIndex + 1;
           console.log(quizIndex)
           
@@ -101,10 +97,11 @@ shuffleArray();
           // This conditional statement will reset the page and provide the
           // localStorage information.
 
-          if (quizIndex === 4) {
+          if ((quizIndex === 4) || (secondsLeft === 0)) {
 
-            document.getElementById('answerStatus').innerHTML = "!";
-            document.getElementById("main").style.display = 'block';
+            document.getElementById('answerStatus').innerHTML = "";
+            document.getElementById("holdQuestions").style.display = 'none';
+            document.getElementById("recordScore").style.display = 'block';
             console.log(secondsLeft)
             localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
             document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
@@ -121,7 +118,8 @@ shuffleArray();
       startQuizBtn.addEventListener("click",function launchQuiz (event) {
         event.preventDefault();
         shuffleArray();
-        document.getElementById("main").style.display = 'none'
+        document.getElementById("main").style.display = 'none';
+        document.getElementById("holdQuestions").style.display = 'block';
         secondsLeft = 60;
         setTime();
         quizBegins();
@@ -140,7 +138,9 @@ shuffleArray();
           if(secondsLeft === 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
-            document.getElementById("main").style.display = 'block'
+            document.getElementById("holdQuestions").style.display = 'non'
+            // document.getElementById("recordScore").style.display = 'block'
+
             
             document.getElementById('exampleList').innerHTML = "";
     
@@ -162,7 +162,12 @@ shuffleArray();
 //          enteredInitials.innerHTML = "";
         var initialsProvided = document.querySelector("#enteredInitials").value;
         localStorage.setItem("enteredInitials", JSON.stringify(initialsProvided));
-        console.log(initialsProvided);
+        document.getElementById("recordScore").style.display = 'none';
+
+        if (initialsProvided === "") {
+          document.getElementById("main").style.display = 'block';
+          return;
+        }
 
         // Then below is where we reset the Form and show the block
         // highscoreTracker.
@@ -176,14 +181,23 @@ shuffleArray();
         scoreLi.innerHTML = userInitials +"       "+ timeLeft;
         listOfScores.appendChild(scoreLi);
 
-        // listOfScores.textContent = enteredInitials.length;
-
-        // for( q =0; q < enteredInitials.length; q++) {
-        //   var userScore = userScore[q];
-        //   var userScoreLi = document.createElement('li');
-        //   userScoreLi.textContent = userScore;
-        //   enteredInitials.appendChild(userScoreLi);
-        // }
-
 
       });
+
+      goBackBtn.addEventListener("click", function goBack (event){
+        event.preventDefault();
+        document.getElementById("main").style.display = 'block';
+        document.getElementById("highscoreTracker").style.display = 'none';
+      })
+
+      clearHighscoresBtn.addEventListener("click", function clearHighscores(event){
+        event.preventDefault();
+        document.getElementById('listOfScores').innerHTML = "";
+
+      })
+
+      viewHighscoresBtn.addEventListener("click", function viewHighscores(event){
+        event.preventDefault();
+        document.getElementById("main").style.display = 'none';
+        document.getElementById("highscoreTracker").style.display = 'block';
+      })
