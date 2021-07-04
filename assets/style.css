@@ -1,15 +1,44 @@
-
+html {
+    margin: 0%;
+    padding: 0%;
+}
 
 body {
+    display: flex;
     background-color: cornsilk;
+    flex-direction: column;
+    justify-content: center;
+}
+
+div {
+    margin-left: 25%;
+    margin-right: 25%;
 }
 
 ul {
     list-style: none;
 }
 
+header {
+    display: inline-flex;
+    justify-content: space-between;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+#viewHighscores {
+    border-style: none;
+    background: transparent;
+    text-decoration: underline;
+}
+
+#viewHighscores:hover {
+    color: violet;
+}
+
 #main {
-    display: block
+    display: block;
+    text-align: center;
 }
 
 #holdQuestions{
