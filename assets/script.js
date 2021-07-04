@@ -12,7 +12,8 @@ var quizIndex = 0
 var liElement =0;
 var secondsLeft = 0;
 
-
+// Okay listen this course is great for building a foundation but we need
+// to do some terminology stuff because these questions THREW me.
 
 var questionOne= { 
     thisIsTheQuestion: "Explain Implicit Type Coercion in javascript",
@@ -40,6 +41,9 @@ var questionFour = {
 
 questionArray = [questionOne, questionTwo, questionThree, questionFour]
 
+// Are you one of those people who can do a test and recall the answer
+// based on the positioning? SAME! So this will randomise the Q's and 
+// the A's.
 
 function shuffleArray() {
   questionArray.sort(() => Math.random() - 0.5);
@@ -51,47 +55,60 @@ function shuffleArray() {
 
 shuffleArray();
 
-
-
+//Function that is called when the 'Start Quiz' button is pressed.
+// Each block of HTML is always present on the screen, but it becomes
+// obvious that there is a path the user has to take in order to get
+// through the course, so I just changed the display style for each
+// block as needed.
 
 startQuizBtn.addEventListener("click",function launchQuiz (event) {
   event.preventDefault();
   shuffleArray();
   document.getElementById("main").style.display = 'none';
   document.getElementById("holdQuestions").style.display = 'block';
+  // document.getElementById("hideHighscores").style.display = 'block';
+  // document.getElementById("viewHighscores").style.display = 'none';
   secondsLeft = 60;
   setTime();
   quizBegins();
- 
   });
 
+// Below is the function affecting the timer in the Top Right corner
+// of the HTML.
+
 function setTime() {
-// Sets interval in variable
-var timerInterval = setInterval(function() {
+  var timerInterval = setInterval(function() {
   secondsLeft--;
   timeCountdown.textContent = secondsLeft;
 
+  // Here is the code to stop the Quiz when the timer runs out.
+
   if (secondsLeft <= 0 && quizIndex !== 4) {
-    // Stops execution of action at set interval
-    //secondsLeft = 1
       clearInterval(timerInterval);
       console.log("Ran out of time")
-    document.getElementById("holdQuestions").style.display = 'none'
-    document.getElementById("recordScore").style.display = 'block'
 
-    quizIndex = 0;
-    // secondsLeft = 1;
+    // The next 3 lines respectively hide the Q&A section, show the
+    // form to enter your score and reset the quizIndex button - this
+    // ensures that every time the quiz is run, each question will appear.
 
-    localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
-    document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+      document.getElementById("holdQuestions").style.display = 'none'
+      document.getElementById("recordScore").style.display = 'block'
+      quizIndex = 0;
+    
+    // Even if the user runs out of time, their score will still be 0
+    // and they can enter that as a highscore.
 
-    document.getElementById('exampleList').innerHTML = "";
+      localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
+      document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
+      document.getElementById('exampleList').innerHTML = "";
+      document.getElementById('questionTitle').innerHTML = "";
+      return;
+    
+      } 
 
-    document.getElementById('questionTitle').innerHTML = "";
-
-    return;
-  
-    } 
+  // A quizIndex value is added every time a question is answered, so if
+  // quizIndex ===4 this means that the quiz has finished and the timer
+  // can stop.
 
   if (quizIndex === 4){
     clearInterval(timerInterval);
@@ -102,26 +119,25 @@ var timerInterval = setInterval(function() {
   }, 1000);
 }
 
+// quizBegins exists seperately from launchQuiz because placing them together
+// was a messy headache. Essentially what happens here is each question
+// is called through the questionArray until all 4 questions have been 
+// summoned. And we accomplished this through the quizIndex variable,
+// which always starts at 0.
+
 function quizBegins(){
 
 var i = quizIndex
-
 var answerList = document.getElementById("exampleList")
-
 document.getElementById('answerStatus').innerHTML = "";
 
-
-console.log(event.target)
 for (g = 0; g < 4 ; g++) {
     
     document.getElementById('questionTitle').innerHTML = questionArray[i].thisIsTheQuestion;
-
     var liElement = document.createElement('li');
-
     liElement.innerHTML = questionArray[i].possibleAnswers[g]
-
     answerList.appendChild(liElement);
-    
+ 
     liElement.addEventListener('click', function(event){
 
       // Below conditional statement necessary for assigning the penalty
@@ -139,24 +155,38 @@ for (g = 0; g < 4 ; g++) {
 
     }
 
-      quizIndex = quizIndex + 1;
-      console.log(quizIndex)
-      
+    // Here is the code to show either the "Wrong" or "Correct" alert.
+
+
+
+    // These lines reset the HTML block that holdsQuestions before the 
+    // quiz finishes or summons the next question.
+
+      quizIndex = quizIndex + 1;      
       document.getElementById('exampleList').innerHTML = "";
       document.getElementById('questionTitle').innerHTML = "";
       
-      // This conditional statement will reset the page and provide the
-      // localStorage information.
+      // This conditional statement sends us back to the setTimer function.
+
       if (secondsLeft <= 0) {
         secondsLeft = 0;
+       // return;
       }
 
+      // And here is the consequence of quizIndex. Basically if all 4
+      // questions have been asked then the secondsLeft = score and we
+      // can move onto the block that will recordScore. If less than 4
+      // questions have been asked then then the next question in the
+      // shuffled array will be summoned. 
+        //* Please note that hypothetically if more questions need to be
+        // added then we just need to change the next line and add to 
+        // the question array (and I guess change the amount of time
+        // you start with), which makes this code easy to update.
       if (quizIndex === 4) {
         
         document.getElementById('answerStatus').innerHTML = "";
         document.getElementById("holdQuestions").style.display = 'none';
         document.getElementById("recordScore").style.display = 'block';
-        console.log(secondsLeft)
         localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
         document.getElementById('finalScore').innerHTML = localStorage.getItem("finalScore");
         return;
@@ -165,52 +195,68 @@ for (g = 0; g < 4 ; g++) {
         }
       })
     }
-}  
+  }  
+
+// This is how we are going to store the scores. Simple form to record the
+// user input. Please note there are no penalties for unusual submissions,
+// because I'm not a killjoy.
 
 submitInitialsBtn.addEventListener("click", function recordScore (event) {
-  event.preventDefault();
-  console.log("Initials Submitted")
   
-  //This is where we are going to store the scores. 
-  //enteredInitials.innerHTML = "";
+  event.preventDefault();
   var initialsProvided = document.querySelector("#enteredInitials").value;
   localStorage.setItem("enteredInitials", JSON.stringify(initialsProvided));
   document.getElementById("recordScore").style.display = 'none';
+
+  // Also - you don't need to enter your initials if you get 0, you have
+  // the option of not recording that :)
 
   if (initialsProvided === "") {
     document.getElementById("main").style.display = 'block';
     return;
   }
 
-  // Then below is where we reset the Form and show the block
-  // highscoreTracker.
+  // Then below is where we reset the Form and show the 
+  // highscoreTracker block
+
   document.getElementById("scoreForm").reset();
   document.getElementById("highscoreTracker").style.display = 'block'
+  
+  document.getElementById("main").style.display = 'block';
 
-  // Then, we need to create an li with the respective score and initals.
+  // Then, we need to create an li with the respective score and initals. This ends the
+  // main user pathway so that the user can eithe play again or clear the scores.
+
   var scoreLi = document.createElement('li');
   var userInitials = JSON.parse(localStorage.getItem("enteredInitials"));
   var timeLeft = localStorage.getItem("finalScore");
   scoreLi.innerHTML = userInitials +":             "+ timeLeft;
   listOfScores.appendChild(scoreLi);
-
-
 });
+
+// Return to the main block.
 
 goBackBtn.addEventListener("click", function goBack (event){
   event.preventDefault();
-  document.getElementById("main").style.display = 'block';
+  // document.getElementById("viewHighscores").style.display = 'block';
+  // document.getElementById("hideHighscores").style.display = 'none';
+  // document.getElementById("main").style.display = 'block';
   document.getElementById("highscoreTracker").style.display = 'none';
 })
+
+// Removing the highscores.
 
 clearHighscoresBtn.addEventListener("click", function clearHighscores(event){
   event.preventDefault();
   document.getElementById('listOfScores').innerHTML = "";
-
 })
+
+// Viewing the highscores. This button is only usable when viewing the main block.
 
 viewHighscoresBtn.addEventListener("click", function viewHighscores(event){
   event.preventDefault();
-  document.getElementById("main").style.display = 'none';
+  // document.getElementById("hideHighscores").style.display = 'block';
+  // document.getElementById("viewHighscores").style.display = 'none';
+  // document.getElementById("main").style.display = 'none';
   document.getElementById("highscoreTracker").style.display = 'block';
 })

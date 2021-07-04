@@ -1,7 +1,7 @@
 :root {
     --purple: #7329b8;
     --violet: #cdade6;
-    --yellow: 
+    --yellow: #f5e61df3;
 }
 
 * {
@@ -16,7 +16,28 @@ html {
 body {
     display: flex;
     background-color: white;
+    color: black;
     flex-direction: column;
+}
+
+header {
+    display: inline-flex;
+    justify-content: space-between;
+    margin: 3%;
+    align-items: baseline;
+}
+
+#viewHighscores {
+    border-style: none;
+    background: transparent;
+    text-decoration: underline;
+    color: black;
+    padding: 2%;
+    margin-top: 2%;
+}
+
+#viewHighscores:hover {
+    color:  var(--purple);
 }
 
 div {
@@ -44,41 +65,21 @@ h4 {
 
 
 p {
-    padding: 3%;
+    padding: 2%;
+    margin-top: 2%;
 }
 
 form {
     padding: 3%;
-
 }
-
 
 li  {
     background-color: var(--violet);
-    color: black;
     margin: 1%;
     margin-top: 2%;
     padding: 3%;
     border-radius: 10px;
     list-style-type: decimal-leading-zero;
-
-}
-
-header {
-    display: inline-flex;
-    justify-content: space-between;
-    margin: 3%;
-}
-
-#viewHighscores {
-    border-style: none;
-    background: transparent;
-    text-decoration: underline;
-    color: black;
-}
-
-#viewHighscores:hover {
-    color:  var(--purple);
 }
 
 #main {
@@ -91,11 +92,7 @@ header {
 }
 
 #exampleList li:hover {
-  /*  box-shadow: 0px 0px 10px var(--purple);
-    border-style: inset transparent    ;
-    transition: translateX(0px);
-    transition: 0.5s all; */
-    background-color: rgba(245, 230, 29, 0.952);
+    background-color: var(--yellow);
 }
 
 #holdQuestions{
@@ -107,12 +104,26 @@ header {
 }
 
 #highscoreTracker {
+    text-align: center;
     display: none;
+    position: absolute;
+    background-color: white;
+    border-radius: 10px;
+    width: 100%;
+    padding: 5%;
+    padding-bottom: 100%;
+    margin: 0%;
 }
 
 #highscoreTracker li {
     background-color: var(--violet);
-    color: black;
+    padding: 7px;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+#highscoreTracker button {
+    padding: 7px;
 }
 
 button {
