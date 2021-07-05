@@ -2,7 +2,11 @@
 
 ## My Task
 
-Some of the questions that come up in coding assessments are terrifying conceptually 4 weeks into this bootcamp, so because thi
-To help familiarize you with these tests and allow you to use the skills covered in this unit, this week’s homework invites you to build a timed coding quiz with multiple-choice questions. This app will run in the browser and will feature dynamically updated HTML and CSS powered by JavaScript code that you write. It will have a clean, polished, and responsive user interface. 
+This week's homework required me to make a quiz of some JS principles that was responsive, alerted the user which answer they chose and stored the highscores of all the players. The app uses a combination of timers and conditional statements directly affecting HTML and CSS to run.
 
-This week’s coursework will equip you with all the skills you need to succeed in this assignment.
+Regrettably, the local-storage highscores don't remain after the page refreshes. It stays there while within the single run-time only. Would love some feedback on this in order to improve here.
+
+## Process and Strategy
+
+Essentially, the user needs to move through the quiz on a set pathway. As the code is fairly small, it's easy to presume how the user will interact with the code and the limited number of buttons. And this process based the build-up of the JS code, which does all the heavy lifting. Hence it carries all of the comments and thought processes behind the choices made (that and all of the long comment titles).
+
