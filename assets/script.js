@@ -119,6 +119,24 @@ function setTime() {
   }, 1000);
 }
 
+// This is the function that tells the user whether they were correct or incorrect. The innerHTML
+// will changed based on the user's choice, which you can see on lines 166-175, further down the page.
+
+function showAnswerAlert(){
+   var alertTime = 2;
+ 
+  alertShow = setInterval(function(){
+    if (alertTime > 0) {
+      document.getElementById("showAnswerStatus").style.display = 'block';
+      alertTime--;
+      } 
+    if (alertTime === 0) { 
+      document.getElementById("showAnswerStatus").style.display = 'none';
+      clearInterval(alertShow);
+              }
+        }, 1000);
+      }
+
 // quizBegins exists seperately from launchQuiz because placing them together
 // was a messy headache. Essentially what happens here is each question
 // is called through the questionArray until all 4 questions have been 
@@ -129,7 +147,7 @@ function quizBegins(){
 
 var i = quizIndex
 var answerList = document.getElementById("exampleList")
-document.getElementById('answerStatus').innerHTML = "";
+// document.getElementById('answerStatus').innerHTML = "";
 
 for (g = 0; g < 4 ; g++) {
     
@@ -137,37 +155,24 @@ for (g = 0; g < 4 ; g++) {
     var liElement = document.createElement('li');
     liElement.innerHTML = questionArray[i].possibleAnswers[g]
     answerList.appendChild(liElement);
+
+    // The following lines are executed after an option is selected.
  
     liElement.addEventListener('click', function(event){
 
       // Below conditional statement necessary for assigning the penalty
       // of having selected the wrong answer, as well as the alert.
 
-        // var alertTime =1;
-
-        // alertShow = setInterval(function(){
-
-        //   if (alertTime > 0) {
-
             if (event.target.textContent === questionArray[i].correctAnswer) {
               console.log("That's it!");
               document.getElementById('answerStatus').innerHTML = "Correct!";
-              // alertTime--;
 
             } else { 
             console.log("Nope");
             secondsLeft = secondsLeft - 15;
             document.getElementById('answerStatus').innerHTML = "Wrong!";
-              // alertTime--
             }
-          // }
-
-    //       if (alertTime === 0) {
-    //         document.getElementById('answerStatus').innerHTML = "";
-    //         clearInterval(alertShow);
-    //       }
-    // }, 1000);
-
+            showAnswerAlert();
 
     // These lines reset the HTML block that holdsQuestions before the 
     // quiz finishes or summons the next question.
@@ -194,7 +199,7 @@ for (g = 0; g < 4 ; g++) {
 
       if (quizIndex === 4) {
         
-        document.getElementById('answerStatus').innerHTML = "";
+       // document.getElementById('answerStatus').innerHTML = "";
         document.getElementById("holdQuestions").style.display = 'none';
         document.getElementById("recordScore").style.display = 'block';
         localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
@@ -252,7 +257,7 @@ goBackBtn.addEventListener("click", function goBack (event){
   document.getElementById("highscoreTracker").style.display = 'none';
 })
 
-// Removing the highscores.
+// Removing the highscores permanently.
 
 clearHighscoresBtn.addEventListener("click", function clearHighscores(event){
   event.preventDefault();

@@ -99,6 +99,11 @@ li  {
     display: none;
 }
 
+#showAnswerStatus{
+    display: none;
+    font-style: italic;
+}
+
 #recordScore{
     display: none;
 }
