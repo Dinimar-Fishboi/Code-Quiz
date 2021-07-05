@@ -120,14 +120,15 @@ function setTime() {
 }
 
 // This is the function that tells the user whether they were correct or incorrect. The innerHTML
-// will changed based on the user's choice, which you can see on lines 166-175, further down the page.
+// will changed based on the user's choice, which you can see on lines 167-178, further 
+// down the page. After the user selects their choice, the showAnswerStatus block becomes 
+// visible, however this function will cause it to disappear within 2-ish seconds.
 
 function showAnswerAlert(){
    var alertTime = 2;
  
   alertShow = setInterval(function(){
     if (alertTime > 0) {
-      document.getElementById("showAnswerStatus").style.display = 'block';
       alertTime--;
       } 
     if (alertTime === 0) { 
@@ -172,6 +173,8 @@ for (g = 0; g < 4 ; g++) {
             secondsLeft = secondsLeft - 15;
             document.getElementById('answerStatus').innerHTML = "Wrong!";
             }
+            
+            document.getElementById("showAnswerStatus").style.display = 'block';
             showAnswerAlert();
 
     // These lines reset the HTML block that holdsQuestions before the 
@@ -199,7 +202,6 @@ for (g = 0; g < 4 ; g++) {
 
       if (quizIndex === 4) {
         
-       // document.getElementById('answerStatus').innerHTML = "";
         document.getElementById("holdQuestions").style.display = 'none';
         document.getElementById("recordScore").style.display = 'block';
         localStorage.setItem("finalScore", JSON.stringify(secondsLeft) )
