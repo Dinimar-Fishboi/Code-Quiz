@@ -71,6 +71,10 @@ p {
 
 form {
     padding: 3%;
+    justify-content: space-between;
+    display: flex;
+    align-items: baseline;
+    flex-wrap: wrap;
 }
 
 li  {
