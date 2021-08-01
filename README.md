@@ -22,6 +22,10 @@ https://dinimar-fishboi.github.io/Code-Quiz/
 <img width="964" alt="3-Scorecard" src="https://user-images.githubusercontent.com/83541287/124476931-c4dd8300-dde6-11eb-9d93-fedff327a866.png">
 <img width="964" alt="4-Highscores" src="https://user-images.githubusercontent.com/83541287/124476936-c5761980-dde6-11eb-89b7-de200b471b12.png">
 
+## Contact
+email: dev.fish.studio@protonmail.com
+portfolio: https://dinimar-fishboi.github.io/Dev.Fish/
+
 The MIT License (MIT)
 Copyright © 2021 Tayla Tallis
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the “Software”), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
