@@ -1,10 +1,15 @@
 # Code-Quiz
 
-## The Task
+https://dinimar-fishboi.github.io/Code-Quiz/
 
-This week's homework was to make a quiz that was responsive, alerted the user when they chose an answer and stored the highscores of all the players. The app uses a combination of timers and conditional statements directly affecting HTML and CSS to run.
+## The Application
 
-Regrettably, the local-storage highscores don't remain after the page refreshes. It stays there while within the single run-time only. Would love some feedback on this in order to improve here.
+This application runs the user through a fast-paced quiz to test their knowledge on JavaScript. 
+
+## Technology
+1. HTML
+2. CSS
+3. JavaScript
 
 ## Process and Strategy
 
